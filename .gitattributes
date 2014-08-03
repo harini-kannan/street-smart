@@ -1,1 +1,1 @@
-*.pbxproj -crlf -diff -merge
+*.pbxproj text -crlf -diff -merge=union
