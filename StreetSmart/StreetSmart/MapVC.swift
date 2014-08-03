@@ -9,7 +9,7 @@
 import UIKit
 
 class MapVC: UIViewController, GMSMapViewDelegate {
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +24,10 @@ class MapVC: UIViewController, GMSMapViewDelegate {
         var marker:GMSMarker?
         func showMap(coords: String, user: String) {
             var coordsArray = coords.componentsSeparatedByString(" ")
-            var lon = NSString(string: coordsArray[0]).doubleValue
-            var lat = NSString(string: coordsArray[1]).doubleValue
-            println(lon)
+            var lat = NSString(string: coordsArray[0]).doubleValue
+            var lon = NSString(string: coordsArray[1]).doubleValue
             println(lat)
+            println(lon)
             var target: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: lat, longitude: lon)
             var camera: GMSCameraPosition = GMSCameraPosition(target: target, zoom: 15, bearing: 0, viewingAngle: 0)
             if gmaps {
@@ -47,7 +47,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
                 self.view.addSubview(map)
                 marker = GMSMarker()
                 marker!.position = CLLocationCoordinate2DMake(lat, lon);
-                marker!.title = user;
+                marker!.title = "Harini";
                 marker!.map = map
             }
         }
@@ -61,7 +61,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
                 if let coords:String = storedCoords {
                     showMap(coords, user)
                 }
-            })
+                })
         }
         if let user = username {
             var dataRef = Firebase(
@@ -73,7 +73,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
                     watchUser(following[0] as String)
                 }
                 
-            })
+                })
         }
     }
     

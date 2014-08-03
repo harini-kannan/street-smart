@@ -60,7 +60,28 @@ class LocationVC: UIViewController, CLLocationManagerDelegate {
                 url:"https://streetsmartdb.firebaseio.com/Users/\(user)/using_address"
             )
             dataRef.setValue(false)
-            
+            dataRef = Firebase(
+                url:"https://streetsmartdb.firebaseio.com/Users/\(user)/inDanger"
+            )
+            dataRef.observeEventType(
+                FEventTypeValue,
+                withBlock: { snapshot in
+                    if snapshot.value is NSNull {
+                        return
+                    }
+                    else {
+                        println(snapshot.value)
+                        let value = snapshot.value as Bool
+                        if(value) {
+                            self.statusLabel.text = "Status: At Risk!"
+                        }
+                        else {
+                            self.statusLabel.text = "Status: Safe!"
+                        }
+                        
+                    }
+
+            })
         }
     }
 }
