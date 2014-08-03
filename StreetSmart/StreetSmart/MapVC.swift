@@ -38,7 +38,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
             }
             else {
                 var target: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                var camera: GMSCameraPosition = GMSCameraPosition(target: target, zoom: 15, bearing: 0, viewingAngle: 0)
+                var camera: GMSCameraPosition = GMSCameraPosition(target: target, zoom: 16, bearing: 0, viewingAngle: 0)
                 gmaps = GMSMapView(frame: CGRectMake(0, 66, self.view.bounds.width, self.view.bounds.height)) as GMSMapView!
                 let map = gmaps!
                 map.myLocationEnabled = true

@@ -18,6 +18,9 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         username.delegate=self
         password.delegate=self
+        /*var backgroundImage:UIImageView = UIImageView(image:
+            UIImage(named: "background2"))
+        self.view.addSubview(backgroundImage)*/
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,7 +64,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
                     else {
                         var alertView:UIAlertView = UIAlertView()
                         alertView.title = "Sign in Failed!"
-                        alertView.message = "Something really weird happened"
+                        alertView.message = "Username cannot be blank"
                         alertView.delegate = self
                         alertView.addButtonWithTitle("OK")
                         alertView.show()
