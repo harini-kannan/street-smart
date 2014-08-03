@@ -28,13 +28,13 @@
         <!--Home-->
         <scene sceneID="KpN-tc-600">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5Rk-Di-Nhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Home" id="7Ep-qf-0Df" customClass="HomeVC" customModule="StreetSmart" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9fb-SA-dAE"/>
                         <viewControllerLayoutGuide type="bottom" id="2Oh-U5-Yrh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jIY-Mc-Gzp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to StreetSmart!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Or-zi-d2i">
@@ -67,6 +67,10 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="63" y="363" width="194" height="46"/>
                                 </variation>
+                                <connections>
+                                    <action selector="takeWalk:" destination="7Ep-qf-0Df" eventType="touchUpInside" id="IqO-0N-838"/>
+                                    <segue destination="cgB-ci-7F7" kind="presentation" identifier="goto_location" id="SDW-Bc-rFy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dae-ud-H1U">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -109,8 +113,59 @@
                         <segue destination="b7Y-pm-nll" kind="presentation" identifier="goto_login" id="8pO-X8-zs2"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Rk-Di-Nhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="513" y="194.25"/>
+        </scene>
+        <!--LocationVC-->
+        <scene sceneID="Icf-w0-1Zv">
+            <objects>
+                <viewController id="cgB-ci-7F7" customClass="LocationVC" customModule="StreetSmart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dlD-L1-BR7"/>
+                        <viewControllerLayoutGuide type="bottom" id="QAe-1u-fnE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lA4-xa-XS3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoZ-ti-rcZ">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Home Safe!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="87" y="249" width="147" height="70"/>
+                                </variation>
+                                <connections>
+                                    <action selector="goHome:" destination="cgB-ci-7F7" eventType="touchUpInside" id="rpr-sf-M6I"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="YoZ-ti-rcZ"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="YoZ-ti-rcZ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
+                        <size key="portraitSize" width="320" height="568"/>
+                        <size key="landscapeSize" width="568" height="320"/>
+                    </simulatedScreenMetrics>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="176-bu-rwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1431" y="-78.75"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="2F1-Xe-jnW">
@@ -121,6 +176,7 @@
                         <viewControllerLayoutGuide type="bottom" id="hg7-kz-Y0r"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uYI-ml-n5x">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DMu-xF-RmO">
@@ -219,7 +275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2yM-Q0-0U0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1405.5" y="419.25"/>
+            <point key="canvasLocation" x="1420.5" y="537.75"/>
         </scene>
     </scenes>
 </document>
