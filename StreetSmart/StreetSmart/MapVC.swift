@@ -47,7 +47,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
                 self.view.addSubview(map)
                 marker = GMSMarker()
                 marker!.position = CLLocationCoordinate2DMake(lat, lon);
-                marker!.title = "Harini";
+                marker!.title = user;
                 marker!.map = map
             }
         }
