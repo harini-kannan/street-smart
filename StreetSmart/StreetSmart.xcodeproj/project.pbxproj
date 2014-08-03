@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A05136B7198DD89000629D16 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05136B6198DD89000629D16 /* Firebase.framework */; };
+		A0609BC7198DD1D300323266 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A0609BC6198DD1D300323266 /* libicucore.dylib */; };
+		A0609BC9198DD1DE00323266 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A0609BC8198DD1DE00323266 /* libc++.dylib */; };
+		A0609BCB198DD1EB00323266 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0609BCA198DD1EB00323266 /* CFNetwork.framework */; };
+		A0609BCD198DD1F300323266 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0609BCC198DD1F300323266 /* Security.framework */; };
+		A0609BCF198DD1FD00323266 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0609BCE198DD1FD00323266 /* SystemConfiguration.framework */; };
 		A0ABA84B198D7FDC004E0E00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ABA84A198D7FDC004E0E00 /* AppDelegate.swift */; };
 		A0ABA84D198D7FDC004E0E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ABA84C198D7FDC004E0E00 /* ViewController.swift */; };
 		A0ABA850198D7FDD004E0E00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0ABA84E198D7FDD004E0E00 /* Main.storyboard */; };
@@ -27,6 +33,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A05136B6198DD89000629D16 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../../../../../Library/Frameworks/Firebase.framework; sourceTree = "<group>"; };
+		A0609BC6198DD1D300323266 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		A0609BC8198DD1DE00323266 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		A0609BCA198DD1EB00323266 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A0609BCC198DD1F300323266 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A0609BCE198DD1FD00323266 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A0ABA845198D7FDC004E0E00 /* StreetSmart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StreetSmart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0ABA849198D7FDC004E0E00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0ABA84A198D7FDC004E0E00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +58,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A05136B7198DD89000629D16 /* Firebase.framework in Frameworks */,
+				A0609BCF198DD1FD00323266 /* SystemConfiguration.framework in Frameworks */,
+				A0609BCD198DD1F300323266 /* Security.framework in Frameworks */,
+				A0609BCB198DD1EB00323266 /* CFNetwork.framework in Frameworks */,
+				A0609BC9198DD1DE00323266 /* libc++.dylib in Frameworks */,
+				A0609BC7198DD1D300323266 /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +80,12 @@
 		A0ABA83C198D7FDC004E0E00 = {
 			isa = PBXGroup;
 			children = (
+				A05136B6198DD89000629D16 /* Firebase.framework */,
+				A0609BCE198DD1FD00323266 /* SystemConfiguration.framework */,
+				A0609BCC198DD1F300323266 /* Security.framework */,
+				A0609BCA198DD1EB00323266 /* CFNetwork.framework */,
+				A0609BC8198DD1DE00323266 /* libc++.dylib */,
+				A0609BC6198DD1D300323266 /* libicucore.dylib */,
 				A0ABA847198D7FDC004E0E00 /* StreetSmart */,
 				A0ABA85A198D7FDD004E0E00 /* StreetSmartTests */,
 				A0ABA846198D7FDC004E0E00 /* Products */,
@@ -336,8 +360,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = StreetSmart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "StreetSmart/StreetSmart-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -351,8 +380,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = StreetSmart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "StreetSmart/StreetSmart-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -412,6 +446,7 @@
 				A0ABA863198D7FDD004E0E00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A0ABA864198D7FDD004E0E00 /* Build configuration list for PBXNativeTarget "StreetSmartTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +455,7 @@
 				A0ABA866198D7FDD004E0E00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
