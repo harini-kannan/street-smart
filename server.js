@@ -8,6 +8,11 @@ var south = 37.786564;
 var east = -122.405494;
 var north = 37.796564;
 
+var twilio = require('twilio');
+TWILIO_ACCOUNT_SID = 'AC6be2a1414ab8bd83a22db24e91db6279';
+TWILIO_AUTH_TOKEN = '223bce8a531c574d21c3ca3e78f385f0';
+var client = new twilio.RestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+
 var options = {
   host: 'sanfrancisco.crimespotting.org',
   //path: '/crime-data?format=json&count=2'
@@ -33,6 +38,14 @@ callback = function(response) {
       crime = {"coordinates" : coordinates, "crimeType" : crimeType, "dateTime" : dateTime, "description" : description}
 
       myRootRef.push(crime)
+    }
+    if (jsonObject["features"].length > 5) {
+      client.sms.messages.create({
+          to:'+14088343727',
+          from:'+13132087874',
+          body:'bebe'
+      });
+
     }
   });
 
