@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A005C450198E3B8400D86CB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A005C44F198E3B8400D86CB4 /* AVFoundation.framework */; };
+		A005C452198E3B8C00D86CB4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A005C451198E3B8C00D86CB4 /* CoreData.framework */; };
+		A005C454198E3B9200D86CB4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A005C453198E3B9200D86CB4 /* CoreLocation.framework */; };
+		A005C456198E3BA000D86CB4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A005C455198E3BA000D86CB4 /* CoreText.framework */; };
+		A005C458198E3BA600D86CB4 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A005C457198E3BA600D86CB4 /* GLKit.framework */; };
+		A005C45A198E3BAB00D86CB4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A005C459198E3BAB00D86CB4 /* ImageIO.framework */; };
+		A005C45C198E3BBB00D86CB4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A005C45B198E3BBB00D86CB4 /* libz.dylib */; };
+		A005C45E198E3BC600D86CB4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A005C45D198E3BC600D86CB4 /* OpenGLES.framework */; };
+		A005C460198E3BCC00D86CB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A005C45F198E3BCC00D86CB4 /* QuartzCore.framework */; };
+		A005C462198E3CD300D86CB4 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A005C461198E3CD300D86CB4 /* GoogleMaps.framework */; };
+		A005C464198E3E8000D86CB4 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A005C463198E3E8000D86CB4 /* MapVC.swift */; };
+		A005C466198E406F00D86CB4 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A005C465198E406F00D86CB4 /* GoogleMaps.bundle */; };
 		A05136B7198DD89000629D16 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05136B6198DD89000629D16 /* Firebase.framework */; };
 		A05ADFCE198DEDA0000845AF /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05ADFCD198DEDA0000845AF /* LocationVC.swift */; };
 		A0609BC7198DD1D300323266 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A0609BC6198DD1D300323266 /* libicucore.dylib */; };
@@ -34,6 +46,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A005C44F198E3B8400D86CB4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A005C451198E3B8C00D86CB4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A005C453198E3B9200D86CB4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A005C455198E3BA000D86CB4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		A005C457198E3BA600D86CB4 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		A005C459198E3BAB00D86CB4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		A005C45B198E3BBB00D86CB4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		A005C45D198E3BC600D86CB4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A005C45F198E3BCC00D86CB4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A005C461198E3CD300D86CB4 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ../../../../../../Library/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
+		A005C463198E3E8000D86CB4 /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		A005C465198E406F00D86CB4 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../../../../../../Library/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		A05136B6198DD89000629D16 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../../../../../Library/Frameworks/Firebase.framework; sourceTree = "<group>"; };
 		A05ADFCD198DEDA0000845AF /* LocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
 		A0609BC6198DD1D300323266 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -60,6 +84,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A005C462198E3CD300D86CB4 /* GoogleMaps.framework in Frameworks */,
+				A005C460198E3BCC00D86CB4 /* QuartzCore.framework in Frameworks */,
+				A005C45E198E3BC600D86CB4 /* OpenGLES.framework in Frameworks */,
+				A005C45C198E3BBB00D86CB4 /* libz.dylib in Frameworks */,
+				A005C45A198E3BAB00D86CB4 /* ImageIO.framework in Frameworks */,
+				A005C458198E3BA600D86CB4 /* GLKit.framework in Frameworks */,
+				A005C456198E3BA000D86CB4 /* CoreText.framework in Frameworks */,
+				A005C454198E3B9200D86CB4 /* CoreLocation.framework in Frameworks */,
+				A005C452198E3B8C00D86CB4 /* CoreData.framework in Frameworks */,
+				A005C450198E3B8400D86CB4 /* AVFoundation.framework in Frameworks */,
 				A05136B7198DD89000629D16 /* Firebase.framework in Frameworks */,
 				A0609BCF198DD1FD00323266 /* SystemConfiguration.framework in Frameworks */,
 				A0609BCD198DD1F300323266 /* Security.framework in Frameworks */,
@@ -82,6 +116,17 @@
 		A0ABA83C198D7FDC004E0E00 = {
 			isa = PBXGroup;
 			children = (
+				A005C465198E406F00D86CB4 /* GoogleMaps.bundle */,
+				A005C461198E3CD300D86CB4 /* GoogleMaps.framework */,
+				A005C45F198E3BCC00D86CB4 /* QuartzCore.framework */,
+				A005C45D198E3BC600D86CB4 /* OpenGLES.framework */,
+				A005C45B198E3BBB00D86CB4 /* libz.dylib */,
+				A005C459198E3BAB00D86CB4 /* ImageIO.framework */,
+				A005C457198E3BA600D86CB4 /* GLKit.framework */,
+				A005C455198E3BA000D86CB4 /* CoreText.framework */,
+				A005C453198E3B9200D86CB4 /* CoreLocation.framework */,
+				A005C451198E3B8C00D86CB4 /* CoreData.framework */,
+				A005C44F198E3B8400D86CB4 /* AVFoundation.framework */,
 				A05136B6198DD89000629D16 /* Firebase.framework */,
 				A0609BCE198DD1FD00323266 /* SystemConfiguration.framework */,
 				A0609BCC198DD1F300323266 /* Security.framework */,
@@ -115,6 +160,7 @@
 				A0ABA869198DA269004E0E00 /* LoginVC.swift */,
 				A0ABA870198DB083004E0E00 /* StreetSmart-Bridging-Header.h */,
 				A05ADFCD198DEDA0000845AF /* LocationVC.swift */,
+				A005C463198E3E8000D86CB4 /* MapVC.swift */,
 			);
 			path = StreetSmart;
 			sourceTree = "<group>";
@@ -225,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A005C466198E406F00D86CB4 /* GoogleMaps.bundle in Resources */,
 				A0ABA850198D7FDD004E0E00 /* Main.storyboard in Resources */,
 				A0ABA852198D7FDD004E0E00 /* Images.xcassets in Resources */,
 			);
@@ -245,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A05ADFCE198DEDA0000845AF /* LocationVC.swift in Sources */,
+				A005C464198E3E8000D86CB4 /* MapVC.swift in Sources */,
 				A0ABA868198DA0D0004E0E00 /* HomeVC.swift in Sources */,
 				A0ABA84D198D7FDC004E0E00 /* ViewController.swift in Sources */,
 				A0ABA86A198DA269004E0E00 /* LoginVC.swift in Sources */,

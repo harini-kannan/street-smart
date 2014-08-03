@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vfi-Q3-Xhp">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <scenes>
@@ -56,6 +57,10 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="63" y="289" width="194" height="46"/>
                                 </variation>
+                                <connections>
+                                    <action selector="watchMap:" destination="7Ep-qf-0Df" eventType="touchUpInside" id="9PF-Py-gNU"/>
+                                    <segue destination="3iz-aQ-xRe" kind="presentation" identifier="goto_map" id="Az6-0r-rET"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EuE-tx-9c3">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -117,6 +122,28 @@
             </objects>
             <point key="canvasLocation" x="513" y="194.25"/>
         </scene>
+        <!--MapVC-->
+        <scene sceneID="qUf-Jx-0u4">
+            <objects>
+                <viewController id="3iz-aQ-xRe" customClass="MapVC" customModule="StreetSmart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4tw-eF-Pay"/>
+                        <viewControllerLayoutGuide type="bottom" id="z6Q-dd-tTK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7BQ-2r-3QQ">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
+                        <size key="portraitSize" width="320" height="568"/>
+                        <size key="landscapeSize" width="568" height="320"/>
+                    </simulatedScreenMetrics>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WpK-AF-GD2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1197" y="-57.75"/>
+        </scene>
         <!--LocationVC-->
         <scene sceneID="Icf-w0-1Zv">
             <objects>
@@ -165,7 +192,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="176-bu-rwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1431" y="-78.75"/>
+            <point key="canvasLocation" x="1161" y="524.25"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="2F1-Xe-jnW">
@@ -277,7 +304,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2yM-Q0-0U0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1420.5" y="537.75"/>
+            <point key="canvasLocation" x="46.5" y="725.25"/>
         </scene>
     </scenes>
 </document>

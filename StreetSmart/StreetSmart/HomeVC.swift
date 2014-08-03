@@ -43,6 +43,12 @@ class HomeVC: UIViewController {
             sender: self
         )
     }
+    @IBAction func watchMap(sender: AnyObject) {
+        self.performSegueWithIdentifier(
+            "goto_map",
+            sender: self
+        )
+    }
 
 }
 
