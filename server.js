@@ -1,7 +1,13 @@
 var http = require("http");
 var Firebase = require('firebase')
 var myRootRef = new Firebase('streetsmartdb.firebaseIO.com/crimes')
-myRootRef.set("bebe")
+
+var extra = {
+  apiKey: 'AIzaSyDJ4QibCYB8Nu7JdLKBevQGNROI8dXFINw',
+  formatter: null
+}
+var geocoder = require('node-geocoder').getGeocoder('google', 'http')
+
 var jsonObject;
 
 var twilio = require('twilio');
@@ -13,86 +19,115 @@ var userRef = new Firebase("streetsmartdb.firebaseio.com/Users")
 
 userRef.on('child_changed', function (snapshot) {
   var changedUser = snapshot.val();
-  var coords = changedUser.lastCoordinates;
-  var res = coords.split(" ");
-  var south = parseFloat(res[0]);
-  var west = parseFloat(res[1]);
-  var east = west + 0.01;
-  var north = south + 0.01;
-  var user_phone = changedUser.phone;
-  var followers = changedUser.followers;
-  var contacts_phones = [];
-  var j=0;
 
-  for (j=0; j < followers.length; j++) {
-    var contactRef = new Firebase("streetsmartdb.firebaseio.com/Users/" + followers[j])
+  var south = 0;
+  var west = 0;
+  var east = 0;
+  var north = 0;
 
-    contactRef.on('value', function (snapshot) {
-      var econtact = snapshot.val();
-      var phone = econtact.phone
-      contacts_phones.push(phone)
-      console.log(phone)
-    })
+  if (!changedUser.using_address) {
+    var coords = changedUser.lastCoordinates;
+    res = coords.split(" ");
+    west = parseFloat(res[0]);
+    south = parseFloat(res[1]);
+    east = west + 0.01;
+    north = south + 0.01;
+    assign_lat_long(south, west, east, north);
+  }
+  else {
+    var address = changedUser.address;
+    var s = 0;
+    var w = 0;
+    var e = 0;
+    var n = 0;
+    geocoder.geocode(address, function(err, res) {
+        s = parseFloat(res[0]["latitude"]);
+        w = parseFloat(res[0]["longitude"]);
+        e = w + 0.01;
+        n = s + 0.01;
+        assign_lat_long(s, w, e, n);
+    });
   }
 
+  var assign_lat_long = function(s, w, e, n) {
+    south = s;
+    west = w;
+    east = e;
+    north = n;
 
-  var options = {
-    host: 'sanfrancisco.crimespotting.org',
-    path: '/crime-data?format=json&bbox='+west+","+south+","+east+","+north
-  };
+    var user_phone = changedUser.phone;
+    var followers = changedUser.followers;
+    var contacts_phones = [];
+    var j=0;
 
+    for (j=0; j < followers.length; j++) {
+      var contactRef = new Firebase("streetsmartdb.firebaseio.com/Users/" + followers[j])
 
-  var callback = function(response) {
+      contactRef.on('value', function (snapshot) {
+        var econtact = snapshot.val();
+        var phone = econtact.phone
+        contacts_phones.push(phone)
+      })
+    }
 
-    // note: I think you can get address as well. look into it later
+    var options = {
+      host: 'sanfrancisco.crimespotting.org',
+      path: '/crime-data?format=json&bbox='+west+","+south+","+east+","+north
+    };
 
-    var str = '';
+    var callback = function(response) {
 
-    response.on('data', function (chunk) {
+      // note: I think you can get address as well. look into it later
 
-      str += chunk;
+      var str = '';
 
-    });
+      response.on('data', function (chunk) {
 
-    response.on('end', function () {
-      var jsonObject = JSON.parse(str);
-      var i=0;
-      for (i=0; i < jsonObject["features"].length; i++) {
-        coordinates = jsonObject["features"][i]["geometry"]["coordinates"]
-        crimeType = jsonObject["features"][i]["properties"]["crime_type"]
-        dateTime = jsonObject["features"][i]["properties"]["date_time"]
-        description = jsonObject["features"][i]["properties"]["description"]
-        crime = {"coordinates" : coordinates, "crimeType" : crimeType, "dateTime" : dateTime, "description" : description}
+        str += chunk;
 
-        myRootRef.push(crime)
-      }
+      });
 
-      if (jsonObject["features"].length > 5) {
+      response.on('end', function () {
+        var jsonObject = JSON.parse(str);
+        var i=0;
+        for (i=0; i < jsonObject["features"].length; i++) {
+          coordinates = jsonObject["features"][i]["geometry"]["coordinates"]
+          crimeType = jsonObject["features"][i]["properties"]["crime_type"]
+          dateTime = jsonObject["features"][i]["properties"]["date_time"]
+          description = jsonObject["features"][i]["properties"]["description"]
+          crime = {"coordinates" : coordinates, "crimeType" : crimeType, "dateTime" : dateTime, "description" : description}
 
-        console.log('IN DANGER');
-
-        //twilio
-
-        client.sms.messages.create({
-            to: user_phone,
-            from:'+13132087874',
-            body:'You have entered a high crime zone. Be careful!'
-        });
-
-        for (i=0; i < contacts_phones.length; i++) {
-          client.sms.messages.create({
-              to: contacts_phones[i],
-              from:'+13132087874',
-              body:'Your friend ' + changedUser.username + ' entered a high crime zone.'
-          });
+          myRootRef.push(crime)
         }
-        userRef.child(changedUser.username).child("inDanger").set(true);
-      }
-    });
+
+        if (jsonObject["features"].length > 5) {
+        //if (true) {
+          console.log('IN DANGER');
+
+          //twilio
+
+          client.sms.messages.create({
+              to: user_phone,
+              from:'+13132087874',
+              body:'You have entered a high crime zone. Be careful!'
+          });
+
+          for (i=0; i < contacts_phones.length; i++) {
+            client.sms.messages.create({
+                to: contacts_phones[i],
+                from:'+13132087874',
+                body:'Your friend ' + changedUser.username + ' entered a high crime zone.'
+            });
+          }
+          userRef.child(changedUser.username).child("inDanger").set(true);
+        }
+      });
+    }
+
+    http.request(options, callback).end();
+
   }
 
-
-  http.request(options, callback).end();
 
 /*
   if (result) {
