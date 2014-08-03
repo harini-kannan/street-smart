@@ -37,6 +37,12 @@ class HomeVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func takeWalk(sender: AnyObject) {
+        self.performSegueWithIdentifier(
+            "goto_location",
+            sender: self
+        )
+    }
 
 }
 

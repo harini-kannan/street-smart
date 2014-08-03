@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A05136B7198DD89000629D16 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05136B6198DD89000629D16 /* Firebase.framework */; };
+		A05ADFCE198DEDA0000845AF /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05ADFCD198DEDA0000845AF /* LocationVC.swift */; };
 		A0609BC7198DD1D300323266 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A0609BC6198DD1D300323266 /* libicucore.dylib */; };
 		A0609BC9198DD1DE00323266 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A0609BC8198DD1DE00323266 /* libc++.dylib */; };
 		A0609BCB198DD1EB00323266 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0609BCA198DD1EB00323266 /* CFNetwork.framework */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		A05136B6198DD89000629D16 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../../../../../Library/Frameworks/Firebase.framework; sourceTree = "<group>"; };
+		A05ADFCD198DEDA0000845AF /* LocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
 		A0609BC6198DD1D300323266 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A0609BC8198DD1DE00323266 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		A0609BCA198DD1EB00323266 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -112,6 +114,7 @@
 				A0ABA867198DA0CF004E0E00 /* HomeVC.swift */,
 				A0ABA869198DA269004E0E00 /* LoginVC.swift */,
 				A0ABA870198DB083004E0E00 /* StreetSmart-Bridging-Header.h */,
+				A05ADFCD198DEDA0000845AF /* LocationVC.swift */,
 			);
 			path = StreetSmart;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				TargetAttributes = {
 					A0ABA844198D7FDC004E0E00 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = HAS63Y5J2V;
 					};
 					A0ABA856198D7FDD004E0E00 = {
 						CreatedOnToolsVersion = 6.0;
@@ -240,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A05ADFCE198DEDA0000845AF /* LocationVC.swift in Sources */,
 				A0ABA868198DA0D0004E0E00 /* HomeVC.swift in Sources */,
 				A0ABA84D198D7FDC004E0E00 /* ViewController.swift in Sources */,
 				A0ABA86A198DA269004E0E00 /* LoginVC.swift in Sources */,
@@ -360,14 +365,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = StreetSmart/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "StreetSmart/StreetSmart-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -380,14 +389,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = StreetSmart/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "StreetSmart/StreetSmart-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
