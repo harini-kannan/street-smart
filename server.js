@@ -22,8 +22,17 @@ var options = {
   //-122.426723,37.769304
 };
 
+var userRef = new Firebase("streetsmartdb.firebaseio.com/Users")
+userRef.on('child_changed', function (snapshot) {
+  var changedUser = snapshot.val();
+  if (changedUser.password === "bebe") {
+    userRef.child(changedUser.username).child("inDanger").set(false);
+    console.log('true');
+  }
+  console.log('Updated user is ' + changedUser.password)
+})
+
 callback = function(response) {
-  var str = '';
 
   // note: I think you can get address as well. look into it later
 
@@ -39,17 +48,22 @@ callback = function(response) {
 
       myRootRef.push(crime)
     }
+
+    //twilio
+    /*
     if (jsonObject["features"].length > 5) {
       client.sms.messages.create({
           to:'+14088343727',
           from:'+13132087874',
-          body:'bebe'
+          body:'You have entered a high crime zone'
       });
-
     }
+    */
   });
 
 }
+
+
 
 function start() {
   function onRequest(request, response) {
