@@ -70,14 +70,33 @@ class LoginVC: UIViewController {
     }
     @IBAction func signupTapped(sender: UIButton) {
         println("Signup tapped")
-        var prefs = NSUserDefaults.standardUserDefaults()
-        prefs.setObject(username.text, forKey: "defaultUser")
-        prefs.setObject(username.text, forKey: "currentUser")
-        prefs.setObject(password.text, forKey: "defaultPassword")
-        prefs.setObject(1, forKey: "loginStatus")
-        prefs.synchronize()
-        self.dismissViewControllerAnimated(true, completion: nil)
-
+        var dataRef = Firebase(
+            url:"https://streetsmartdb.firebaseio.com/Users/\(username.text)"
+        )
+        dataRef.observeSingleEventOfType(
+            FEventTypeValue,
+            withBlock: { snapshot in
+                if snapshot.value is NSNull {
+                    dataRef.setValue([
+                        "username": self.username.text,
+                        "password": self.password.text
+                    ])
+                    var prefs = NSUserDefaults.standardUserDefaults()
+                    prefs.setObject(self.username.text, forKey: "currentUser")
+                    prefs.setObject(1, forKey: "loginStatus")
+                    prefs.synchronize()
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+                else {
+                    var alertView:UIAlertView = UIAlertView()
+                    alertView.title = "Signup Failed!"
+                    alertView.message = "Username already exists"
+                    alertView.delegate = self
+                    alertView.addButtonWithTitle("OK")
+                    alertView.show()
+                }
+            }
+        )
     }
     
     
