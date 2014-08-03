@@ -15,11 +15,26 @@ userRef.on('child_changed', function (snapshot) {
   var changedUser = snapshot.val();
   var coords = changedUser.lastCoordinates;
   var res = coords.split(" ");
-  var west = parseFloat(res[0]);
-  var south = parseFloat(res[1]);
+  var south = parseFloat(res[0]);
+  var west = parseFloat(res[1]);
   var east = west + 0.01;
   var north = south + 0.01;
-  //var user_phone = changedUser.phone;
+  var user_phone = changedUser.phone;
+  var followers = changedUser.followers;
+  var contacts_phones = [];
+  var j=0;
+
+  for (j=0; j < followers.length; j++) {
+    var contactRef = new Firebase("streetsmartdb.firebaseio.com/Users/" + followers[j])
+
+    contactRef.on('value', function (snapshot) {
+      var econtact = snapshot.val();
+      var phone = econtact.phone
+      contacts_phones.push(phone)
+      console.log(phone)
+    })
+  }
+
 
   var options = {
     host: 'sanfrancisco.crimespotting.org',
@@ -59,11 +74,18 @@ userRef.on('child_changed', function (snapshot) {
         //twilio
 
         client.sms.messages.create({
-            to:'+14088343727',
+            to: user_phone,
             from:'+13132087874',
-            body:'You have entered a high crime zone'
+            body:'You have entered a high crime zone. Be careful!'
         });
 
+        for (i=0; i < contacts_phones.length; i++) {
+          client.sms.messages.create({
+              to: contacts_phones[i],
+              from:'+13132087874',
+              body:'Your friend ' + changedUser.username + ' entered a high crime zone.'
+          });
+        }
         userRef.child(changedUser.username).child("inDanger").set(true);
       }
     });
