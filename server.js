@@ -3,33 +3,34 @@ var Firebase = require('firebase')
 var myRootRef = new Firebase('streetsmartdb.firebaseIO.com/crimes')
 myRootRef.set("bebe")
 var jsonObject;
-var west = -122.415494;
-var south = 37.786564;
-var east = -122.405494;
-var north = 37.796564;
 
 var twilio = require('twilio');
 TWILIO_ACCOUNT_SID = 'AC6be2a1414ab8bd83a22db24e91db6279';
 TWILIO_AUTH_TOKEN = '223bce8a531c574d21c3ca3e78f385f0';
 var client = new twilio.RestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
-var options = {
-  host: 'sanfrancisco.crimespotting.org',
-  //path: '/crime-data?format=json&count=2'
-  //path: '/crime-data?format=json&count=2&bbox=-122.435494,37.796564,-122.395494,37.756564'
-  //path: '/crime-data?format=json&bbox=-122.28,37.7993,-122.2682,37.8077'
-  path: '/crime-data?format=json&bbox='+west+","+south+","+east+","+north
-  //-122.426723,37.769304
-};
-
 var userRef = new Firebase("streetsmartdb.firebaseio.com/Users")
 userRef.on('child_changed', function (snapshot) {
   var changedUser = snapshot.val();
-  if (changedUser.password === "bebe") {
-    userRef.child(changedUser.username).child("inDanger").set(false);
-    console.log('true');
+  coords = changedUser.lastCoordinates;
+  var res = coords.split(" ");
+  var west = parseFloat(res[0]);
+  var south = parseFloat(res[1]);
+  var east = west + 0.01;
+  var north = south + 0.01;
+
+  var options = {
+    host: 'sanfrancisco.crimespotting.org',
+    path: '/crime-data?format=json&bbox='+west+","+south+","+east+","+north
+  };
+
+  var result = http.request(options, callback).end();
+
+  if (result) {
+    userRef.child(changedUser.username).child("inDanger").set(true);
+    console.log('Updated coords is ' + coords);
   }
-  console.log('Updated user is ' + changedUser.password)
+
 })
 
 callback = function(response) {
@@ -49,16 +50,21 @@ callback = function(response) {
       myRootRef.push(crime)
     }
 
-    //twilio
-    /*
     if (jsonObject["features"].length > 5) {
+
+      console.log('IN DANGER');
+      return true;
+      //twilio
+      /*
       client.sms.messages.create({
           to:'+14088343727',
           from:'+13132087874',
           body:'You have entered a high crime zone'
       });
+      */
     }
-    */
+    return false;
+
   });
 
 }
@@ -74,7 +80,7 @@ function start() {
   }
 
   http.createServer(onRequest).listen(8888);
-  http.request(options, callback).end();
+  //http.request(options, callback).end();
   console.log("Server has started.");
 }
 
