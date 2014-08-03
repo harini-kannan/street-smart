@@ -23,6 +23,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 </variation>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLK-pA-sFZ">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="14" y="155" width="286" height="43"/>
+                                </variation>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfF-xX-cAg">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
@@ -47,31 +56,22 @@
                                     <rect key="frame" x="17" y="104" width="286" height="43"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLK-pA-sFZ">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="14" y="155" width="286" height="43"/>
-                                </variation>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="sAo-Xe-THC"/>
+                                <exclude reference="gLK-pA-sFZ"/>
                                 <exclude reference="QfF-xX-cAg"/>
                                 <exclude reference="u99-38-a2W"/>
-                                <exclude reference="gLK-pA-sFZ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="sAo-Xe-THC"/>
+                                <include reference="gLK-pA-sFZ"/>
                                 <include reference="QfF-xX-cAg"/>
                                 <include reference="u99-38-a2W"/>
-                                <include reference="gLK-pA-sFZ"/>
                             </mask>
                         </variation>
                     </view>
@@ -80,10 +80,13 @@
                         <size key="portraitSize" width="320" height="568"/>
                         <size key="landscapeSize" width="568" height="320"/>
                     </simulatedScreenMetrics>
+                    <connections>
+                        <outlet property="statusLabel" destination="gLK-pA-sFZ" id="fJ8-PH-Vok"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="176-bu-rwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="540" y="471.75"/>
+            <point key="canvasLocation" x="894" y="485.25"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="2F1-Xe-jnW">
@@ -240,6 +243,7 @@
                         <viewControllerLayoutGuide type="bottom" id="A8R-3E-frw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="80e-QO-RFi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background2" translatesAutoresizingMaskIntoConstraints="NO" id="UB3-GT-Xw0">
@@ -248,13 +252,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StreetSmart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHZ-b5-m0W">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Constant Vigilance:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pd9-Nb-LC5">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="89" width="280" height="59"/>
+                                    <rect key="frame" x="20" y="441" width="217" height="39"/>
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djI-0k-8YM">
@@ -265,7 +269,7 @@
                                     <color key="titleShadowColor" red="0.49993699600000002" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="35" y="367" width="250" height="50"/>
+                                    <rect key="frame" x="35" y="354" width="250" height="50"/>
                                 </variation>
                                 <connections>
                                     <action selector="loginTapped:" destination="b7Y-pm-nll" eventType="touchUpInside" id="vfV-C4-ruK"/>
@@ -280,7 +284,7 @@
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="124" y="481" width="72" height="30"/>
+                                    <rect key="frame" x="124" y="493" width="72" height="30"/>
                                 </variation>
                                 <connections>
                                     <action selector="logout:" destination="elH-8i-kz1" eventType="touchUpInside" id="ZA1-g0-KPv"/>
@@ -294,7 +298,7 @@
                                     <color key="titleShadowColor" red="0.49993699600000002" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="35" y="266" width="250" height="50"/>
+                                    <rect key="frame" x="35" y="278" width="250" height="50"/>
                                 </variation>
                                 <connections>
                                     <action selector="loginTapped:" destination="b7Y-pm-nll" eventType="touchUpInside" id="qZX-S0-quh"/>
@@ -302,24 +306,65 @@
                                     <segue destination="JrF-Ha-31Y" kind="presentation" identifier="goto_map" id="tGY-4N-ZpB"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StreetSmart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHZ-b5-m0W">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="89" width="280" height="59"/>
+                                </variation>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pPQ-Xf-hiN">
+                                <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="251" y="445" width="51" height="31"/>
+                                </variation>
+                                <connections>
+                                    <action selector="constantVigilance:" destination="elH-8i-kz1" eventType="valueChanged" id="Yhm-Bi-onX"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPf-kl-8FR">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                <state key="normal" title="Manual Address (Demo)" backgroundImage="RoundedRectangleFilled">
+                                    <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.49993699600000002" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="35" y="199" width="250" height="50"/>
+                                </variation>
+                                <connections>
+                                    <action selector="address:" destination="elH-8i-kz1" eventType="touchUpInside" id="NzJ-On-iZ1"/>
+                                    <action selector="loginTapped:" destination="b7Y-pm-nll" eventType="touchUpInside" id="ZPY-Jc-Frw"/>
+                                    <action selector="watchMap:" destination="elH-8i-kz1" eventType="touchUpInside" id="U3Q-Nk-dvL"/>
+                                    <segue destination="LQb-dw-e9L" kind="presentation" id="b4o-mQ-04O"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="UB3-GT-Xw0"/>
-                                <exclude reference="aHZ-b5-m0W"/>
+                                <exclude reference="pd9-Nb-LC5"/>
                                 <exclude reference="djI-0k-8YM"/>
                                 <exclude reference="bsM-iC-bbk"/>
                                 <exclude reference="K4C-kr-Zqt"/>
+                                <exclude reference="aHZ-b5-m0W"/>
+                                <exclude reference="pPQ-Xf-hiN"/>
+                                <exclude reference="TPf-kl-8FR"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="UB3-GT-Xw0"/>
-                                <include reference="aHZ-b5-m0W"/>
+                                <include reference="pd9-Nb-LC5"/>
                                 <include reference="djI-0k-8YM"/>
                                 <include reference="bsM-iC-bbk"/>
                                 <include reference="K4C-kr-Zqt"/>
+                                <include reference="aHZ-b5-m0W"/>
+                                <include reference="pPQ-Xf-hiN"/>
+                                <include reference="TPf-kl-8FR"/>
                             </mask>
                         </variation>
                     </view>
@@ -336,27 +381,116 @@
             </objects>
             <point key="canvasLocation" x="-99" y="194.25"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="22U-1i-X0t">
+        <!--Address-->
+        <scene sceneID="P8S-sN-A2i">
             <objects>
-                <viewController id="26P-QP-TiT" sceneMemberID="viewController">
+                <viewController id="LQb-dw-e9L" customClass="Address" customModule="StreetSmart" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bP6-ns-I0F"/>
-                        <viewControllerLayoutGuide type="bottom" id="MNM-he-Dfq"/>
+                        <viewControllerLayoutGuide type="top" id="w1t-2o-liA"/>
+                        <viewControllerLayoutGuide type="bottom" id="wLC-iq-RDT"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZHz-PM-M4b">
+                    <view key="view" contentMode="scaleToFill" id="qd0-nm-n1y">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background2" translatesAutoresizingMaskIntoConstraints="NO" id="3rA-tP-dvf">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type an address and we'll " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTB-Je-dzq">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="17" y="126" width="286" height="43"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manual Address Input" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOZ-DS-ZUm">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="14" y="75" width="286" height="43"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHn-Di-wwy">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                <state key="normal" title="Submit" backgroundImage="RoundedRectangleFilled">
+                                    <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.49993699600000002" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="35" y="311" width="250" height="50"/>
+                                </variation>
+                                <connections>
+                                    <action selector="Submit:" destination="LQb-dw-e9L" eventType="touchUpInside" id="qXA-hW-4yd"/>
+                                    <action selector="loginTapped:" destination="b7Y-pm-nll" eventType="touchUpInside" id="5dj-n5-jNE"/>
+                                    <action selector="watchMap:" destination="elH-8i-kz1" eventType="touchUpInside" id="hSf-y0-xLx"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" textAlignment="center" minimumFontSize="17" background="RoundedRectangle" translatesAutoresizingMaskIntoConstraints="NO" id="F6o-Dg-euE">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <color key="tintColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="35" y="218" width="250" height="50"/>
+                                </variation>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pretend you went there!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opV-uc-fuX">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="14" y="148" width="286" height="43"/>
+                                </variation>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="3rA-tP-dvf"/>
+                                <exclude reference="tTB-Je-dzq"/>
+                                <exclude reference="cOZ-DS-ZUm"/>
+                                <exclude reference="sHn-Di-wwy"/>
+                                <exclude reference="F6o-Dg-euE"/>
+                                <exclude reference="opV-uc-fuX"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="3rA-tP-dvf"/>
+                                <include reference="tTB-Je-dzq"/>
+                                <include reference="cOZ-DS-ZUm"/>
+                                <include reference="sHn-Di-wwy"/>
+                                <include reference="F6o-Dg-euE"/>
+                                <include reference="opV-uc-fuX"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
                         <size key="portraitSize" width="320" height="568"/>
                         <size key="landscapeSize" width="568" height="320"/>
                     </simulatedScreenMetrics>
+                    <connections>
+                        <outlet property="addressTextField" destination="F6o-Dg-euE" id="Gd6-9F-oG0"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u6X-9X-GO7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WeN-jf-jgN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1149" y="-99.75"/>
+            <point key="canvasLocation" x="519" y="-200.25"/>
         </scene>
         <!--MapVC-->
         <scene sceneID="7KZ-tP-JrV">
@@ -367,6 +501,7 @@
                         <viewControllerLayoutGuide type="bottom" id="kRg-wh-ib3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dat-cr-qbR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whF-eJ-Man">
@@ -406,7 +541,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dys-sj-NPX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="540" y="-12.75"/>
+            <point key="canvasLocation" x="1275" y="-0.75"/>
         </scene>
     </scenes>
     <resources>

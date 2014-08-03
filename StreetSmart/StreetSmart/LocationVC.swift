@@ -10,7 +10,9 @@ import UIKit
 import CoreLocation
 
 class LocationVC: UIViewController, CLLocationManagerDelegate {
+    @IBOutlet weak var statusLabel: UILabel!
     var locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,6 +23,7 @@ class LocationVC: UIViewController, CLLocationManagerDelegate {
         //locationManager.pausesLocationUpdatesAutomatically = true
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
+        println("Rendered")
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,6 +32,7 @@ class LocationVC: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func goHome(sender: AnyObject) {
+        
         locationManager.stopUpdatingLocation()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -39,8 +43,8 @@ class LocationVC: UIViewController, CLLocationManagerDelegate {
         let coord = locationObj.coordinate
         let lat = "\(coord.latitude)"
         let lon = "\(coord.longitude)"
+        let speed = "\(locationObj.speed)"
         let coordString = lat + " " + lon
-        println(coordString)
         let prefs = NSUserDefaults.standardUserDefaults()
         let username:String? = prefs.stringForKey("currentUser")
         if let user = username {
@@ -48,7 +52,15 @@ class LocationVC: UIViewController, CLLocationManagerDelegate {
                 url:"https://streetsmartdb.firebaseio.com/Users/\(user)/lastCoordinates"
             )
             dataRef.setValue(coordString)
-            println(coordString)
+            dataRef = Firebase(
+                url:"https://streetsmartdb.firebaseio.com/Users/\(user)/speed"
+            )
+            dataRef.setValue(speed)
+            dataRef = Firebase(
+                url:"https://streetsmartdb.firebaseio.com/Users/\(user)/using_address"
+            )
+            dataRef.setValue(false)
+            
         }
     }
 }
