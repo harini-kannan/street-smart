@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -16,6 +16,11 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        username.delegate=self
+        password.delegate=self
+        /*var backgroundImage:UIImageView = UIImageView(image:
+            UIImage(named: "background2"))
+        self.view.addSubview(backgroundImage)*/
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,7 +64,7 @@ class LoginVC: UIViewController {
                     else {
                         var alertView:UIAlertView = UIAlertView()
                         alertView.title = "Sign in Failed!"
-                        alertView.message = "Something really weird happened"
+                        alertView.message = "Username cannot be blank"
                         alertView.delegate = self
                         alertView.addButtonWithTitle("OK")
                         alertView.show()
@@ -99,5 +104,8 @@ class LoginVC: UIViewController {
         )
     }
     
-    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
+        textField.resignFirstResponder()
+        return true
+    }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class HomeVC: UIViewController {
     
+    //var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         NSUserDefaults.resetStandardUserDefaults()
@@ -37,6 +38,24 @@ class HomeVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func takeWalk(sender: AnyObject) {
+        self.performSegueWithIdentifier(
+            "goto_location",
+            sender: self
+        )
+    }
+    @IBAction func watchMap(sender: AnyObject) {
+        self.performSegueWithIdentifier(
+            "goto_map",
+            sender: self
+        )
+    }
 
+    @IBAction func constantVigilance(sender: AnyObject) {
+        
+    }
+    @IBAction func address(sender: AnyObject) {
+        
+    }
 }
 
