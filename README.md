@@ -1,4 +1,3 @@
-street-smart
+StreetSmart is an iOS app that helps keep you safe while you're walking around in the city. When you enter a high crime neighborhood, it alerts you and lets your emergency contacts know where you are. Our app is based on inaction, which means that you don't have to press any buttons to send an alert message. As long as you're in a high crime zone, your emergency contacts will be able to see where you are on a map. If you stop moving while in ahigh crime zone, StreetSmart will alert them saying that you could be in danger from a violent crime, so you can get help as quickly as possible. Once you're home safe, you simply check in, and your emergency contacts will know that you're okay. We hope that you'll be able to use StreetSmart wellaand stay out of trouble!
 
-Test commit
 ============
