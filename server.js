@@ -24,8 +24,8 @@ var geocoder = require('node-geocoder').getGeocoder('google', 'http')
 var jsonObject;
 
 var twilio = require('twilio');
-TWILIO_ACCOUNT_SID = 'AC6be2a1414ab8bd83a22db24e91db6279';
-TWILIO_AUTH_TOKEN = '223bce8a531c574d21c3ca3e78f385f0';
+TWILIO_ACCOUNT_SID = 'Your account here';
+TWILIO_AUTH_TOKEN = 'Your token here';
 var client = new twilio.RestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 var userRef = new Firebase("streetsmartdb.firebaseio.com/Users")
