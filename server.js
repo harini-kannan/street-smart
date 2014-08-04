@@ -134,24 +134,32 @@ userRef.on('child_changed', function (snapshot) {
         console.log("violent crime count is " +vcrimecount)
         console.log("property crime count is " + pcrimecount)
         console.log("minor crime count is " + mcrimecount)
-        if (2*vcrimecount + pcrimecount + mcrimecount > 20) {
-          console.log('IN DANGER');
+        userRef.once('value', function (snapshot) {
+          if (!snapshot.val().inDanger) {
+            if (2*vcrimecount + pcrimecount + mcrimecount > 20) {
+              console.log('IN DANGER');
 
-          client.sms.messages.create({
-              to: user_phone,
-              from:'+13132087874',
-              body:'You have entered a high crime zone. Be careful!'
-          });
+              client.sms.messages.create({
+                  to: user_phone,
+                  from:'+13132087874',
+                  body:'You have entered a high crime zone. Be careful!'
+              });
 
-          for (i=0; i < contacts_phones.length; i++) {
-            client.sms.messages.create({
-                to: contacts_phones[i],
-                from:'+13132087874',
-                body:'Your friend ' + changedUser.username + ' entered a high crime zone. '
-            });
+              for (i=0; i < contacts_phones.length; i++) {
+                client.sms.messages.create({
+                    to: contacts_phones[i],
+                    from:'+13132087874',
+                    body:'Your friend ' + changedUser.username + ' entered a high crime zone. '
+                });
+              }
+              userRef.child(changedUser.username).child("inDanger").set(true);
+
+            }
+            else {
+              userRef.child(changedUser.username).child("inDanger").set(false);
+            }
           }
-          userRef.child(changedUser.username).child("inDanger").set(true);
-        }
+        })
       });
     }
 
