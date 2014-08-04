@@ -10,6 +10,7 @@ import UIKit
 
 class HomeVC: UIViewController {
     
+    //var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         NSUserDefaults.resetStandardUserDefaults()
@@ -50,5 +51,11 @@ class HomeVC: UIViewController {
         )
     }
 
+    @IBAction func constantVigilance(sender: AnyObject) {
+        
+    }
+    @IBAction func address(sender: AnyObject) {
+        
+    }
 }
 

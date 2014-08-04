@@ -33,6 +33,7 @@
 		A0ABA85E198D7FDD004E0E00 /* StreetSmartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ABA85D198D7FDD004E0E00 /* StreetSmartTests.swift */; };
 		A0ABA868198DA0D0004E0E00 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ABA867198DA0CF004E0E00 /* HomeVC.swift */; };
 		A0ABA86A198DA269004E0E00 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ABA869198DA269004E0E00 /* LoginVC.swift */; };
+		A0EA914D198EC1490049144B /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EA914C198EC1490049144B /* Address.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		A0ABA867198DA0CF004E0E00 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		A0ABA869198DA269004E0E00 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		A0ABA870198DB083004E0E00 /* StreetSmart-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StreetSmart-Bridging-Header.h"; sourceTree = "<group>"; };
+		A0EA914C198EC1490049144B /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				A0ABA870198DB083004E0E00 /* StreetSmart-Bridging-Header.h */,
 				A05ADFCD198DEDA0000845AF /* LocationVC.swift */,
 				A005C463198E3E8000D86CB4 /* MapVC.swift */,
+				A0EA914C198EC1490049144B /* Address.swift */,
 			);
 			path = StreetSmart;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				A0ABA84D198D7FDC004E0E00 /* ViewController.swift in Sources */,
 				A0ABA86A198DA269004E0E00 /* LoginVC.swift in Sources */,
 				A0ABA84B198D7FDC004E0E00 /* AppDelegate.swift in Sources */,
+				A0EA914D198EC1490049144B /* Address.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
