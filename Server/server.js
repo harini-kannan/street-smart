@@ -2,10 +2,9 @@
  * MODULES
  ******************************************************************************/
 var Geocoder = require('node-geocoder');
-var Http = require('http');
+var http = require('http');
 var Firebase = require('firebase');
 var Twilio = require('twilio');
-var _ = require('underscore')
 
 /*******************************************************************************
  * CONSTANTS
@@ -278,9 +277,9 @@ function start() {
           var crimes = getCrimes(response);
           var crimeTypes = splitCrimes(crimes);
 
-          var violentUserRef = new Firebase(refGen(changedUser.username, 'violentcrimes'));
-          var propertyUserRef = new Firebase(refGen(changedUser.username, 'propertycrimes'));
-          var substanceUserRef = new Firebase(refGen(changedUser.username, 'substancecrimes'));
+          var violentUserRef = new Firebase(refGen(user.username, 'violentcrimes'));
+          var propertyUserRef = new Firebase(refGen(user.username, 'propertycrimes'));
+          var substanceUserRef = new Firebase(refGen(user.username, 'substancecrimes'));
 
           violentUserRef.set(crimeTypes.violent);
           propertyUserRef.set(crimeTypes.property);
