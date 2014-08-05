@@ -1,15 +1,15 @@
-/**
+/*******************************************************************************
  * MODULES
- */
+ ******************************************************************************/
 var Geocoder = require('node-geocoder');
 var Http = require('http');
 var Firebase = require('firebase');
 var Twilio = require('twilio');
 var _ = require('underscore')
 
-/**
+/*******************************************************************************
  * CONSTANTS
- */
+ ******************************************************************************/
 //Geography
 var LONGITUDE_DEGREE = 55;
 var LATITUDE_DEGREE = 69;
@@ -20,10 +20,31 @@ var YDEGREES = (YMILES/LATITUDE_DEGREE);
 //Twilio
 var TWILIO_ACCOUNT_SID = 'Your account here';
 var TWILIO_AUTH_TOKEN = 'Your token here';
+// TODO add Firebase secret key so our DB isn't open to public
+var VIOLENT_CRIMES = {
+  "SIMPLE ASSAULT": true,
+  "MURDER": true,
+  "AGGRAVATED ASSAULT": true,
+  "ARSON": true, 
+  "ROBBERY": true
+};
 
-/**
+var PROPERTY_CRIMES = {
+  "BURGLARY": true,
+  "THEFT": true,
+  "VEHICLE THEFT": true,
+  "VANDALISM": true
+};
+
+var MINOR_CRIMES = {
+  "NARCOTICS": true,
+  "ALCOHOL": true,
+  "PROSTITUTION": true
+};
+
+/*******************************************************************************
  * INSTANCE VARIABLES
- */
+ ******************************************************************************/
 //Firebase 
 var minorRef = new Firebase('streetsmartdb.firebaseIO.com/minorcrimes');
 var crimesRef = new Firebase('streetsmartdb.firebaseIO.com/crimes');
@@ -36,197 +57,208 @@ var geocoder = Geocoder.getGeocoder('google', 'http');
 //Twilio
 var client = new Twilio.RestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
-var jsonObject;
+/*******************************************************************************
+ * HELPER FUNCTIONS
+ ******************************************************************************/
 
-function contactFollowers(followers) {
+/**
+ * @param {object} user User object conforming to Firebase schema
+ *
+ * Contacts followers of user
+ */
+function contactFollowers(user) {
+  var followers = user.followers || [];
   followers.forEach(function(follower) {
+     // TODO store followers as phone numbers (or device UUIDs if push notifications)
+    //   so we don't have to re-query DB to get contact info for each follower 
     var contactRef = new Firebase("streetsmartdb.firebaseio.com/Users/" + follower);
-    contactRef.once('value', function (follower) {
-      var phone = follower.val().phone;
-      var phone = econtact.phone
-      contacts_phones.push(phone)
-    });
-    for (i=0; i < contacts_phones.length; i++) {
-      client.sms.messages.create({
-          to: contacts_phones[i],
+    contactRef.once('value', function (snapshot) {
+      var phone = snapshot.val().phone;
+      if (phone) {
+        client.sms.messages.create({
+          to: phone,
           from:'+13132087874',
-          body:'Your friend ' + changedUser.username + ' entered a high crime zone. '
-      });
-    }
-  })
+          body:'Your friend ' + user.username + ' entered a high crime zone.'
+        });
+      }
+    });
+  });
 }
 
-
-userRef.on('child_changed', function (snapshot) {
-
-  var assign_lat_long = function(s, w, e, n) {
-    south = s;
-    west = w;
-    east = e;
-    north = n;
-
-    var user_phone = changedUser.phone;
-    var followers = changedUser.followers;
-    var contacts_phones = [];
-    var j=0;
-
-    if (!followers) {
-      followers = []
-    }
-    var contactRef;
-    for (j=0; j < followers.length; j++) {
-      contactRef = 
-
-
-    }
-
-    var options = {
-      host: 'sanfrancisco.crimespotting.org',
-      path: '/crime-data?format=json&count=50&dstart=2014-07-20&bbox='+west+","+south+","+east+","+north
-    };
-
-    console.log(options.path);
-    var violentcrimes = ["SIMPLE ASSAULT", "MURDER", "AGGRAVATED ASSAULT", "ARSON", "ROBBERY"]
-    var propertycrimes = ["BURGLARY", "THEFT", "VEHICLE THEFT", "VANDALISM"]
-    var minorcrimes = ["NARCOTICS", "ALCOHOL", "PROSTITUTION"]
-    var vcrimecount = 0
-    var pcrimecount = 0
-    var mcrimecount = 0
-    var ocrimecount = 0
-
-    var vcrimes = []
-    var pcrimes = []
-    var mcrimes = []
-    var ocrimes = []
-
-    var callback = function(response) {
-
-      var str = '';
-
-      response.on('data', function (chunk) {
-
-        str += chunk;
-
-      });
-
-      response.on('end', function () {
-        var jsonObject = JSON.parse(str);
-        console.log(jsonObject)
-        var i=0;
-        for (i=0; i < jsonObject["features"].length; i++) {
-          coordinates = jsonObject["features"][i]["geometry"]["coordinates"]
-          crimeType = jsonObject["features"][i]["properties"]["crime_type"]
-          dateTime = jsonObject["features"][i]["properties"]["date_time"]
-          description = jsonObject["features"][i]["properties"]["description"]
-          crime = {"coordinates" : coordinates, "crimeType" : crimeType, "dateTime" : dateTime, "description" : description}
-
-          crimesRef.push(crime)
-
-          if (violentcrimes.indexOf(crimeType) != -1) {
-            violentRef.push(crime);
-            vcrimes.push(crime);
-            vcrimecount = vcrimecount + 1
-          }
-          else if (propertycrimes.indexOf(crimeType) != -1) {
-            propertyRef.push(crime);
-            pcrimes.push(crime);
-            pcrimecount = pcrimecount + 1
-          }
-          else if (minorcrimes.indexOf(crimeType) != -1) {
-            minorRef.push(crime);
-            mcrimes.push(crime);
-            mcrimecount = mcrimecount + 1
-          }
-          else {
-            otherRef.push(crime);
-            ocrimes.push(crime);
-            ocrimecount = ocrimecount + 1
-          }
-        }
-
-        var violent = "https://streetsmartdb.firebaseio.com/Users/" + changedUser.username + "/violentcrimes";
-        var property =  "https://streetsmartdb.firebaseio.com/Users/" + changedUser.username + "/propertycrimes";
-        var substance =  "https://streetsmartdb.firebaseio.com/Users/" + changedUser.username + "/substancecrimes";
-
-        var violentUserRef = new Firebase(violent);
-        var propertyUserRef = new Firebase(property);
-        var substanceUserRef = new Firebase(substance);
-
-        violentUserRef.set(vcrimes);
-        propertyUserRef.set(pcrimes);
-        substanceUserRef.set(mcrimes);
-
-        console.log("violent crime count is " +vcrimecount)
-        console.log("property crime count is " + pcrimecount)
-        console.log("minor crime count is " + mcrimecount)
-        userRef.once('value', function (snapshot) {
-          if (!snapshot.val().inDanger) {
-            if (2*vcrimecount + pcrimecount + mcrimecount > 20) {
-              console.log('IN DANGER');
-
-              client.sms.messages.create({
-                  to: user_phone,
-                  from:'+13132087874',
-                  body:'You have entered a high crime zone. Be careful!'
-              });
-              userRef.child(changedUser.username).child("inDanger").set(true);
-
-            }
-            else {
-              userRef.child(changedUser.username).child("inDanger").set(false);
-            }
-          }
-        })
-      });
-    }
-    http.request(options, callback).end();
-  }
-
-  var changedUser = snapshot.val();
-
-  var south = 0;
-  var west = 0;
-  var east = 0;
-  var north = 0;
-
-  if (!changedUser.using_address) {
-    var coords = changedUser.lastCoordinates;
-    res = coords.split(" ");
-    west = parseFloat(res[0]) - 0.09;
-    south = parseFloat(res[1]) - 0.072;
-    east = west + 1.8;
-    north = south + 0.144;
-    assign_lat_long(south, west, east, north);
+/**
+ * @param {object} user User object conforming to Firebase schema
+ * 
+ * Contacts user if phone number entered, logs otherwise
+ */
+function contactUser(user) {
+  if (user.phone) {
+    client.sms.messages.create({
+      to: user.phone,
+      from:'+13132087874',
+      body:'Your friend ' + user.username + ' entered a high crime zone.'
+    });
   }
   else {
-    var address = changedUser.address;
-    var s = 0;
-    var w = 0;
-    var e = 0;
-    var n = 0;
+    console.log('User phone number not entered');
+  }
+}
+
+/**
+ * @param {object} user User object conforming to Firebase schema
+ * @param {callback} callback function taking coords object as param
+ *
+ * @return {object} Coordinate object with .north, .south, .east, .west
+ *
+ * Gets coordinates from user. 
+ */
+function getLastCoords(user, callback) {
+  var coords = {};
+  var lastCoords = changedUser.lastCoordinates || ''
+  if (!changedUser.using_address) {
+    // Lots of places this could crash so let's be paranoid
+    try {
+      lastCoords = lastCoords.split(" ");
+      // TODO figure out what these numbers even are.
+      coords.west = parseFloat(lastCoords[0]) - 0.09;
+      coords.south = parseFloat(lastCoords[1]) - 0.072;
+      coords.east = west + 1.8;
+      coords.north = south + 0.144;
+    }
+    catch(err) {
+      console.log(err);
+      callback();
+      return;
+    }
+    callback(coords);
+  }
+  else {
     geocoder.geocode(address, function(err, res) {
-        console.log(res[0])
-        if(err) {
-          console.log(err)
-          return;
-        }
+      if(err) {
+        console.log(err)
+        callback();
+        return;
+      }
+      else {
         try {
-          s = parseFloat(res[0]["latitude"]);
-          w = parseFloat(res[0]["longitude"]);
+          coords.south = parseFloat(res[0]["latitude"]);
+          coords.west = parseFloat(res[0]["longitude"]);
+          coords.east = coords.west + 0.01;
+          coords.north = coords.south + 0.01;
         }
         catch(err) {
           console.log(err)
+          callback();
           return;
         }
-        e = w + 0.01;
-        n = s + 0.01;
-        console.log(s, w, e, n)
-        assign_lat_long(s, w, e, n);
+        callback(coords);
+      }
     });
   }
+}
 
-});
+/**
+ * @param {httpResponse} response response from http.request
+ * @param {function(object)} next callback that takes JSON response
+ */
+function httpCallback(response, next) {
+  var str = '';
+  response.on('data', function(chunk) {
+    str += chunk;
+  })
+  response.on('end', function() {
+    var jsonObject = {};
+    try {
+      jsonObject = JSON.parse(str);
+    }
+    catch(err) {
+      console.error(err);
+    }
+    next(jsonObject);
+  });
+}
 
+/**
+ * @param {object} Response from Crimespotters API
+ *
+ * @return {array<object>} Array of returned crimes
+ */
+function getCrimes(response) {
+  var crimes = response.features || [];
+  return crimes.map(function(feature) {
+    if (!feature.geometry || !feature.properties) {
+      return null;
+    }
+    return {
+      coordinates: feature.geometry.coordinates,
+      crimeType: feature.properties.crime_type,
+      dateTime: feature.properties.date_time,
+      description: feature.properties.description
+    };
+  }).filter(function(crime) {
+    return crime !== null;
+  });
+}
+
+/**
+ * @param {array<object>} Array of crime objects
+ *
+ * @return {array<object>} Array of returned crimes
+ *
+ * Parses crimes into violent, property, minor, and other.
+ *   Returns as single object with attributes corresponding to each crime type.
+ *   Also pushes each crime to the appropriate Firebase crime table.
+ */
+function splitCrimes(crimes) {
+  var crimeTypes = {
+    violent: [],
+    property: [],
+    minor: [],
+    other: []
+  };
+  crimes.forEach(function(crime) {
+    crimeRef.push(crime);
+    var crimeType = crime.crimeType;
+    if (!crimeType) {
+      return;
+    }
+    if (VIOLENT_CRIMES[crimeType]) {
+      crimeTypes.violent.push(crime);
+      violentRef.push(crime);
+    }
+    else if (PROPERTY_CRIMES[crimeType]) {
+      crimeTypes.property.push(crime);
+      propertyRef.push(crime);
+    }
+    else if (MINOR_CRIMES[crimeType]) {
+      crimeTypes.minor.push(crime);
+      minorRef.push(crime);
+    }
+    else {
+      crimeTypes.other.push(crime);
+    }
+  });
+  return crimeTypes;
+}
+
+function getOptions(coords) {
+  var options = {
+    host: 'sanfrancisco.crimespotting.org',
+    path: '/crime-data?format=json&count=50&dstart=2014-07-20&bbox=' + 
+      coords.west + "," + coords.south + "," + coords.east + "," + coords.north
+  };
+}
+
+function refGen(user, query) {
+  return "https://streetsmartdb.firebaseio.com/Users/" + user + "/" + query;
+}
+
+function inDanger(crimeTypes) {
+  return 2*crimeTypes.violent.length + crimeTypes.property.length + crimeTypes.minor.length > 20;
+}
+
+/*******************************************************************************
+ * MAIN FUNCTION
+ ******************************************************************************/
 function start() {
   function onRequest(request, response) {
     response.writeHead(200, {"Content-Type": "text/plain"});
@@ -235,6 +267,45 @@ function start() {
 
   http.createServer(onRequest).listen(8888);
   console.log("Server has started.");
+
+  userRef.on('child_changed', function (snapshot) {
+    var user = snapshot.val();
+    
+    getLastCoords(user, function(coords) {
+      var options = getOptions(coords);
+      var callback = function(data) {
+        httpCallback(data, function(response) {
+          var crimes = getCrimes(response);
+          var crimeTypes = splitCrimes(crimes);
+
+          var violentUserRef = new Firebase(refGen(changedUser.username, 'violentcrimes'));
+          var propertyUserRef = new Firebase(refGen(changedUser.username, 'propertycrimes'));
+          var substanceUserRef = new Firebase(refGen(changedUser.username, 'substancecrimes'));
+
+          violentUserRef.set(crimeTypes.vcrimes);
+          propertyUserRef.set(crimeTypes.pcrimes);
+          substanceUserRef.set(crimeTypes.mcrimes);
+
+          userRef.once('value', function (secondSnapshot) {
+            if (!secondSnapshot.val().inDanger) {
+              if (inDanger(crimeTypes)) {
+                console.log('IN DANGER');
+                contactUser(user);
+                contactFollowers(user);
+                userRef.child(user.username).child("inDanger").set(true);
+              }
+            }
+            else {
+              if(!inDanger(crimeTypes)) {
+                userRef.child(user.username).child("inDanger").set(false);
+              }
+            }
+          })
+        })
+      };
+      http.request(options, callback).end();
+    });
+  });
 }
 
 exports.start = start;
