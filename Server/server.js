@@ -271,6 +271,9 @@ function start() {
     var user = snapshot.val();
     
     getLastCoords(user, function(coords) {
+      if (!coords) {
+        return;
+      }
       var options = getOptions(coords);
       var callback = function(data) {
         httpCallback(data, function(response) {
