@@ -282,9 +282,9 @@ function start() {
           var propertyUserRef = new Firebase(refGen(changedUser.username, 'propertycrimes'));
           var substanceUserRef = new Firebase(refGen(changedUser.username, 'substancecrimes'));
 
-          violentUserRef.set(crimeTypes.vcrimes);
-          propertyUserRef.set(crimeTypes.pcrimes);
-          substanceUserRef.set(crimeTypes.mcrimes);
+          violentUserRef.set(crimeTypes.violent);
+          propertyUserRef.set(crimeTypes.property);
+          substanceUserRef.set(crimeTypes.minor);
 
           userRef.once('value', function (secondSnapshot) {
             if (!secondSnapshot.val().inDanger) {
