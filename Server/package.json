@@ -1,0 +1,22 @@
+{
+  "name": "module-name",
+  "version": "0.0.1",
+  "bin": {
+    "module-name": "./server"
+  },
+  "main": "server.js",
+  "script": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harini-kannan/street-smart"
+  },
+  "dependencies": {
+    "firebase": "*",
+    "node-geocoder": "*",
+    "twilio": "*"
+  },
+  "private": true,
+  "license": "MIT"
+}
